@@ -263,44 +263,6 @@ p, li, div { color: #E4ECF5; }
 
 hr { border: none; border-top: 1px solid rgba(30,144,255,0.1); margin: 1rem 0; }
 
-/* ── PIXEL SPRITE ── */
-.sprite-wrap {
-    position: fixed;
-    bottom: 32px;
-    right: 48px;
-    z-index: 9999;
-    width: 30px;
-    height: 54px;
-    animation: sprite-bounce 0.5s ease-in-out infinite alternate,
-               sprite-drift 9s ease-in-out infinite alternate;
-    filter: drop-shadow(0 0 6px rgba(30,144,255,0.6));
-    cursor: default;
-}
-.sprite {
-    width: 0; height: 0;
-    position: absolute;
-    top: 0; left: 0;
-    box-shadow:
-        6px 0 0 #1E90FF, 12px 0 0 #1E90FF,
-        0 6px 0 #1E90FF, 6px 6px 0 #1E90FF, 12px 6px 0 #1E90FF, 18px 6px 0 #1E90FF,
-        0 12px 0 #1E90FF, 6px 12px 0 #060D18, 12px 12px 0 #060D18, 18px 12px 0 #1E90FF,
-        0 18px 0 #1E90FF, 6px 18px 0 #1E90FF, 12px 18px 0 #1E90FF, 18px 18px 0 #1E90FF,
-        6px 24px 0 #1E90FF, 12px 24px 0 #1E90FF,
-        0 30px 0 #1E90FF, 6px 30px 0 #1E90FF, 12px 30px 0 #1E90FF, 18px 30px 0 #1E90FF,
-        0 36px 0 #1E90FF, 18px 36px 0 #1E90FF,
-        0 42px 0 #1E90FF, 18px 42px 0 #1E90FF;
-}
-@keyframes sprite-bounce {
-    0%   { transform: translateY(0px) scaleY(1); }
-    80%  { transform: translateY(-14px) scaleY(1.05); }
-    100% { transform: translateY(-18px) scaleY(0.95); }
-}
-@keyframes sprite-drift {
-    0%   { right: 48px; }
-    30%  { right: 160px; }
-    60%  { right: 80px; }
-    100% { right: 220px; }
-}
 
 /* ── SECTION TITLE ── */
 .section-title {
@@ -533,7 +495,45 @@ else:
     """, unsafe_allow_html=True)
 
 st.markdown("""
+<style>
+.sprite-wrap {
+    position: fixed;
+    bottom: 36px;
+    right: 60px;
+    z-index: 99999;
+    animation: sbounce 0.45s ease-in-out infinite alternate,
+               sdrift  10s  ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 7px rgba(30,144,255,0.7));
+    pointer-events: none;
+}
+@keyframes sbounce {
+    0%   { transform: translateY(0)    scaleY(1);    }
+    100% { transform: translateY(-16px) scaleY(0.92); }
+}
+@keyframes sdrift {
+    0%   { right: 60px;  }
+    25%  { right: 200px; }
+    50%  { right: 100px; }
+    75%  { right: 280px; }
+    100% { right: 60px;  }
+}
+</style>
 <div class="sprite-wrap">
-    <div class="sprite"></div>
+<svg width="36" height="60" viewBox="0 0 6 10" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+  <rect x="1" y="0" width="4" height="1" fill="#1E90FF"/>
+  <rect x="0" y="1" width="6" height="1" fill="#1E90FF"/>
+  <rect x="0" y="2" width="1" height="1" fill="#1E90FF"/>
+  <rect x="1" y="2" width="1" height="1" fill="#060D18"/>
+  <rect x="4" y="2" width="1" height="1" fill="#060D18"/>
+  <rect x="5" y="2" width="1" height="1" fill="#1E90FF"/>
+  <rect x="2" y="2" width="2" height="1" fill="#1E90FF"/>
+  <rect x="0" y="3" width="6" height="1" fill="#1E90FF"/>
+  <rect x="2" y="4" width="2" height="1" fill="#1E90FF"/>
+  <rect x="0" y="5" width="6" height="1" fill="#1E90FF"/>
+  <rect x="0" y="6" width="1" height="1" fill="#1E90FF"/>
+  <rect x="5" y="6" width="1" height="1" fill="#1E90FF"/>
+  <rect x="0" y="7" width="1" height="1" fill="#1E90FF"/>
+  <rect x="5" y="7" width="1" height="1" fill="#1E90FF"/>
+</svg>
 </div>
 """, unsafe_allow_html=True)
